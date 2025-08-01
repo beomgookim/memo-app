@@ -1,12 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import {
   Memo,
   MemoFormData,
   MEMO_CATEGORIES,
   DEFAULT_CATEGORIES,
 } from '@/types/memo'
+
+// MDEditor를 동적으로 import (SSR 문제 방지)
+const MDEditor = dynamic(
+  () => import('@uiw/react-md-editor').then((mod) => mod.default),
+  { ssr: false }
+)
+
+
 
 interface MemoFormProps {
   isOpen: boolean
@@ -170,26 +179,57 @@ export default function MemoForm({
 
             {/* 내용 */}
             <div>
-              <label
-                htmlFor="content"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                내용 *
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                내용 * (마크다운 지원)
               </label>
-              <textarea
-                id="content"
-                value={formData.content}
-                onChange={e =>
-                  setFormData(prev => ({
-                    ...prev,
-                    content: e.target.value,
-                  }))
-                }
-                className="placeholder-gray-400 text-gray-400 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
-                placeholder="메모 내용을 입력하세요"
-                rows={8}
-                required
-              />
+              <div className="rounded-lg overflow-hidden">
+                <MDEditor
+                  value={formData.content}
+                  onChange={(value) =>
+                    setFormData(prev => ({
+                      ...prev,
+                      content: value || '',
+                    }))
+                  }
+                  preview="live"
+                  hideToolbar={false}
+                  textareaProps={{
+                    placeholder: '마크다운으로 메모 내용을 입력하세요...\n\n예시:\n# 제목\n## 부제목\n- 목록 항목\n**굵은 글씨**\n*기울임*\n`코드`',
+                    style: {
+                      fontSize: '14px',
+                      lineHeight: '1.5',
+                      fontFamily: 'inherit',
+                      color: '#374151 !important',
+                      backgroundColor: '#ffffff !important',
+                      WebkitTextFillColor: '#374151',
+                    },
+                    onKeyDown: (e) => {
+                      // 엔터 키 처리 개선
+                      if (e.key === 'Enter') {
+                        const textarea = e.target as HTMLTextAreaElement
+                        const { selectionStart, selectionEnd, value } = textarea
+                        const lineStart = value.lastIndexOf('\n', selectionStart - 1) + 1
+                        const currentLine = value.slice(lineStart, selectionStart)
+                        
+                        // 빈 불릿포인트 제거
+                        if (currentLine.trim() === '-' || currentLine.trim() === '*') {
+                          e.preventDefault()
+                          const newValue = value.slice(0, lineStart) + value.slice(selectionEnd)
+                          setFormData(prev => ({
+                            ...prev,
+                            content: newValue,
+                          }))
+                          setTimeout(() => {
+                            textarea.setSelectionRange(lineStart, lineStart)
+                          }, 0)
+                        }
+                      }
+                    },
+                  }}
+                  data-color-mode="light"
+                  height={300}
+                />
+              </div>
             </div>
 
             {/* 태그 */}

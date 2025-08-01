@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '@uiw/react-md-editor/markdown-editor.css';
 
 :root {
   --background: #ffffff;
@@ -38,4 +39,362 @@ body {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* MDEditor 커스텀 스타일 */
+.w-md-editor {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.5rem !important;
+}
+
+.w-md-editor-text-input,
+.w-md-editor-text-textarea,
+.w-md-editor-text {
+  font-family: inherit !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #374151 !important;
+  background-color: #ffffff !important;
+}
+
+/* 더 구체적인 텍스트 색상 설정 */
+.w-md-editor .w-md-editor-text-input,
+.w-md-editor .w-md-editor-text-textarea,
+.w-md-editor .w-md-editor-text-area,
+.w-md-editor .w-md-editor-text-container textarea {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+}
+
+.w-md-editor-text-textarea {
+  padding: 12px !important;
+  resize: none !important;
+}
+
+.w-md-editor-text-input {
+  padding: 12px !important;
+}
+
+.w-md-editor.w-md-editor-focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
+}
+
+.w-md-editor-text-pre {
+  background-color: #ffffff !important;
+  color: #374151 !important;
+}
+
+/* 입력 텍스트 영역의 색상 강제 설정 */
+.w-md-editor textarea {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+.w-md-editor .w-md-editor-text textarea {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* 코드미러 스타일이 적용된 경우를 위한 설정 */
+.w-md-editor .CodeMirror {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+}
+
+.w-md-editor .CodeMirror-line {
+  color: #374151 !important;
+}
+
+.w-md-editor-text-pre .token.title {
+  color: #1f2937 !important;
+}
+
+.w-md-editor-text-pre .token.bold {
+  color: #1f2937 !important;
+  font-weight: bold !important;
+}
+
+.w-md-editor-text-pre .token.code {
+  color: #dc2626 !important;
+  background-color: #f3f4f6 !important;
+  padding: 2px 4px !important;
+  border-radius: 3px !important;
+}
+
+.w-md-editor-text-pre .token.list {
+  color: #059669 !important;
+}
+
+.w-md-editor-text-pre .token.list.punctuation {
+  color: #374151 !important;
+  font-weight: bold !important;
+}
+
+/* 입력 영역에서 리스트 마커 스타일링 */
+.w-md-editor-text-pre .token.list-marker {
+  color: #374151 !important;
+  font-weight: bold !important;
+}
+
+/* 툴바 스타일 개선 */
+.w-md-editor-toolbar {
+  background-color: #f9fafb !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  padding: 8px !important;
+}
+
+.w-md-editor-toolbar-divider {
+  background-color: #e5e7eb !important;
+}
+
+/* 프리뷰 영역 스타일 */
+.w-md-editor-preview {
+  background-color: #ffffff !important;
+  padding: 12px !important;
+}
+
+/* 입력 영역과 프리뷰 영역 구분선 */
+.w-md-editor-split {
+  border: none !important;
+}
+
+.w-md-editor-split .w-md-editor-text,
+.w-md-editor-split .w-md-editor-preview {
+  border-right: 1px solid #e5e7eb !important;
+}
+
+.w-md-editor-split .w-md-editor-preview {
+  border-right: none !important;
+}
+
+/* 텍스트 입력 영역 개선 */
+.w-md-editor-text-container {
+  background-color: #ffffff !important;
+}
+
+.w-md-editor-text-container .w-md-editor-text-input,
+.w-md-editor-text-container .w-md-editor-text-textarea {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 플레이스홀더 스타일 */
+.w-md-editor-text-textarea::placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+/* 최우선 텍스트 색상 규칙 */
+.w-md-editor textarea,
+.w-md-editor .w-md-editor-text textarea,
+.w-md-editor .w-md-editor-text-area textarea,
+.w-md-editor .w-md-editor-text-input,
+.w-md-editor .w-md-editor-text-textarea {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #374151 !important;
+  caret-color: #374151 !important;
+}
+
+/* 다크모드 오버라이드 방지 */
+[data-color-mode="light"] .w-md-editor textarea,
+[data-color-mode="light"] .w-md-editor .w-md-editor-text textarea {
+  color: #374151 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+
+/* 스크롤바 스타일 개선 */
+.w-md-editor-text,
+.w-md-editor-preview {
+  scrollbar-width: thin !important;
+  scrollbar-color: #d1d5db #f9fafb !important;
+}
+
+.w-md-editor-text::-webkit-scrollbar,
+.w-md-editor-preview::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.w-md-editor-text::-webkit-scrollbar-track,
+.w-md-editor-preview::-webkit-scrollbar-track {
+  background: #f9fafb !important;
+}
+
+.w-md-editor-text::-webkit-scrollbar-thumb,
+.w-md-editor-preview::-webkit-scrollbar-thumb {
+  background-color: #d1d5db !important;
+  border-radius: 3px !important;
+}
+
+.w-md-editor-text::-webkit-scrollbar-thumb:hover,
+.w-md-editor-preview::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af !important;
+}
+
+/* 마크다운 미리보기 스타일 */
+.wmde-markdown {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.wmde-markdown h1,
+.wmde-markdown h2,
+.wmde-markdown h3,
+.wmde-markdown h4,
+.wmde-markdown h5,
+.wmde-markdown h6 {
+  color: #1f2937 !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+.wmde-markdown h1 {
+  font-size: 1.875rem !important;
+  font-weight: 700 !important;
+}
+
+.wmde-markdown h2 {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+.wmde-markdown h3 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+}
+
+.wmde-markdown p {
+  margin-bottom: 1rem !important;
+  line-height: 1.6 !important;
+}
+
+.wmde-markdown ul,
+.wmde-markdown ol {
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+.wmde-markdown ul {
+  list-style-type: disc !important;
+  list-style-position: outside !important;
+}
+
+.wmde-markdown ol {
+  list-style-type: decimal !important;
+  list-style-position: outside !important;
+}
+
+.wmde-markdown ul li,
+.wmde-markdown ol li {
+  margin-bottom: 0.25rem !important;
+  padding-left: 0.5rem !important;
+  display: list-item !important;
+  list-style-position: outside !important;
+}
+
+.wmde-markdown ul li {
+  list-style-type: disc !important;
+}
+
+.wmde-markdown ol li {
+  list-style-type: decimal !important;
+}
+
+.wmde-markdown ul li::marker,
+.wmde-markdown ol li::marker {
+  color: #374151 !important;
+  font-size: 1em !important;
+}
+
+/* 중첩된 리스트 */
+.wmde-markdown ul ul,
+.wmde-markdown ol ol,
+.wmde-markdown ul ol,
+.wmde-markdown ol ul {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+  padding-left: 1.5rem !important;
+}
+
+.wmde-markdown ul ul li {
+  list-style-type: circle !important;
+}
+
+.wmde-markdown ul ul ul li {
+  list-style-type: square !important;
+}
+
+/* 리스트 전체에 대한 강제 스타일 */
+.wmde-markdown ul,
+.wmde-markdown ol {
+  list-style: revert !important;
+}
+
+.wmde-markdown ul li,
+.wmde-markdown ol li {
+  list-style: inherit !important;
+}
+
+/* 빈 리스트 아이템 숨기기 */
+.wmde-markdown li:empty {
+  display: none !important;
+}
+
+.wmde-markdown li:has(> :empty) {
+  list-style: none !important;
+}
+
+.wmde-markdown code {
+  background-color: #f3f4f6 !important;
+  color: #dc2626 !important;
+  padding: 0.125rem 0.25rem !important;
+  border-radius: 0.25rem !important;
+  font-size: 0.875rem !important;
+}
+
+.wmde-markdown pre {
+  background-color: #f9fafb !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem !important;
+  margin-bottom: 1rem !important;
+  overflow-x: auto !important;
+}
+
+.wmde-markdown pre code {
+  background-color: transparent !important;
+  color: #374151 !important;
+  padding: 0 !important;
+}
+
+.wmde-markdown blockquote {
+  border-left: 4px solid #e5e7eb !important;
+  padding-left: 1rem !important;
+  margin: 1rem 0 !important;
+  color: #6b7280 !important;
+  font-style: italic !important;
+}
+
+.wmde-markdown table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin-bottom: 1rem !important;
+}
+
+.wmde-markdown th,
+.wmde-markdown td {
+  border: 1px solid #e5e7eb !important;
+  padding: 0.5rem !important;
+  text-align: left !important;
+}
+
+.wmde-markdown th {
+  background-color: #f9fafb !important;
+  font-weight: 600 !important;
 }
